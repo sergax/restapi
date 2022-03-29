@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.sergax.restapi</groupId>
+    <groupId>com.sergax</groupId>
     <artifactId>restapi</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>war</packaging>
@@ -94,11 +94,12 @@
                     <descriptorRefs>
                         <descriptorRef>jar-with-dependencies</descriptorRef>
                     </descriptorRefs>
-                    <finalName>rest_api</finalName>
+                    <finalName>restapi</finalName>
                 </configuration>
             </plugin>
 
             <!--                    $ mvn clean flyway:migrate -Dflyway.configFiles=myFlywayConfig.conf-->
+            <!--                    $ mvn clean verify org.codehaus.cargo:cargo-maven3-plugin:run-->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>
