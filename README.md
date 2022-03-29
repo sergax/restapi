@@ -1,4 +1,4 @@
-[![CodeFactor](https://www.codefactor.io/repository/github/sergax/rest_api/badge)](https://www.codefactor.io/repository/github/sergax/rest_api)
+[![CodeFactor](https://www.codefactor.io/repository/github/sergax/restapi/badge)](https://www.codefactor.io/repository/github/sergax/restapi)
 
 *Практика :*            
 
