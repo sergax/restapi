@@ -1,0 +1,5 @@
+ALTER TABLE user
+ADD FOREIGN KEY (event_id) REFERENCES event(id);
+
+ALTER TABLE event
+ADD FOREIGN KEY (file_id) REFERENCES file(id);
