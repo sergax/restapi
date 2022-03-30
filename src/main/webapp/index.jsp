@@ -9,11 +9,11 @@
   <h1>REST API</h1>
     <tr>
        <form action="<%=request.getContextPath()%>/file" method="get">
-          <input type="submit" value="File" />
+           <td><input type="submit" value="File" /></td>
        <form action="<%=request.getContextPath()%>/event" method="get">
-                 <input type="submit" value="Event" />
+           <td><input type="submit" value="Event" /></td>
        <form action="<%=request.getContextPath()%>/user" method="get">
-                        <input type="submit" value="User" />
+           <td><input type="submit" value="User" /></td>
      </tr>
  </div>
 </body>
