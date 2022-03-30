@@ -88,34 +88,9 @@
 
         <plugins>
 
-<!--            <plugin>-->
-<!--                <artifactId>maven-assembly-plugin</artifactId>-->
-<!--                <version>3.0.0</version>-->
-<!--                <configuration>-->
-<!--                    <descriptorRefs>-->
-<!--                        <descriptorRef>jar-with-dependencies</descriptorRef>-->
-<!--                    </descriptorRefs>-->
-<!--                    <finalName>restapi</finalName>-->
-<!--                </configuration>-->
-<!--            </plugin>-->
-
             <!--                    $ mvn clean flyway:migrate -Dflyway.configFiles=myFlywayConfig.conf-->
             <!--                    $ mvn clean verify org.codehaus.cargo:cargo-maven3-plugin:run-->
             <!--                    $ mysql -u bd1fbccc11cae6 -pd7210c8a -h us-cdbr-east-05.cleardb.net (connect to db)-->
-<!--            <plugin>-->
-<!--                <groupId>org.apache.maven.plugins</groupId>-->
-<!--                <artifactId>maven-dependency-plugin</artifactId>-->
-<!--                <version>3.0.1</version>-->
-<!--                <executions>-->
-<!--                    <execution>-->
-<!--                        <id>copy-dependencies</id>-->
-<!--                        <phase>package</phase>-->
-<!--                        <goals>-->
-<!--                            <goal>copy-dependencies</goal>-->
-<!--                        </goals>-->
-<!--                    </execution>-->
-<!--                </executions>-->
-<!--            </plugin>-->
 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
