@@ -6,12 +6,14 @@ import com.sergax.restapi.model.File;
 import com.sergax.restapi.repository.hibernateRepositoryImplementation.FileRepositoryImplementation;
 import org.hibernate.HibernateException;
 
+import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 import java.util.List;
 
 @WebServlet(name = "FileServlet", urlPatterns = "/file")
@@ -20,7 +22,25 @@ public class FileServlet extends HttpServlet {
             new FileRepositoryImplementation();
     private final Gson gson = new Gson();
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        doGet(request, response);
+    }
+
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String action = request.getServletPath();
+
+        switch (action) {
+            case "/all" -> showAll(request, response);
+            case "/insert" -> insertFile(request, response);
+            case "/delete" -> deleteFile(request, response);
+            case "/update" -> updateFile(request, response);
+            default -> showAll(request, response);
+        }
+    }
+
+    protected void showAll(HttpServletRequest request, HttpServletResponse response) throws IOException {
         PrintWriter out = response.getWriter();
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
@@ -32,7 +52,7 @@ public class FileServlet extends HttpServlet {
         out.flush();
     }
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    protected void insertFile(HttpServletRequest request, HttpServletResponse response) throws IOException {
         PrintWriter out = response.getWriter();
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
@@ -46,7 +66,7 @@ public class FileServlet extends HttpServlet {
         out.flush();
     }
 
-    protected void doPut(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    protected void updateFile(HttpServletRequest request, HttpServletResponse response) throws IOException {
         PrintWriter out = response.getWriter();
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
@@ -61,7 +81,7 @@ public class FileServlet extends HttpServlet {
         out.flush();
     }
 
-    protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    protected void deleteFile(HttpServletRequest request, HttpServletResponse response) throws IOException {
         PrintWriter out = response.getWriter();
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
