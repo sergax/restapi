@@ -7,7 +7,7 @@
 <body>
  <div align="center">
   <h1>Login Form</h1>
-  <form action="<%=request.getContextPath()%>/user" method="post">
+  <form action="<%=request.getContextPath()%>/" method="post">
    <table style="with: 100%">
     <tr>
      <td>rest api</td>
