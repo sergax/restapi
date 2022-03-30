@@ -6,6 +6,9 @@ import com.sergax.restapi.model.File;
 import com.sergax.restapi.repository.hibernateRepositoryImplementation.FileRepositoryImplementation;
 import org.hibernate.HibernateException;
 
+import javax.persistence.PostLoad;
+import javax.persistence.PostRemove;
+import javax.persistence.PostUpdate;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -40,6 +43,7 @@ public class FileServlet extends HttpServlet {
         }
     }
 
+
     protected void showAll(HttpServletRequest request, HttpServletResponse response) throws IOException {
         PrintWriter out = response.getWriter();
         response.setContentType("application/json");
@@ -52,6 +56,7 @@ public class FileServlet extends HttpServlet {
         out.flush();
     }
 
+    @PostUpdate
     protected void insertFile(HttpServletRequest request, HttpServletResponse response) throws IOException {
         PrintWriter out = response.getWriter();
         response.setContentType("application/json");
@@ -66,6 +71,7 @@ public class FileServlet extends HttpServlet {
         out.flush();
     }
 
+    @PostUpdate
     protected void updateFile(HttpServletRequest request, HttpServletResponse response) throws IOException {
         PrintWriter out = response.getWriter();
         response.setContentType("application/json");
@@ -81,6 +87,7 @@ public class FileServlet extends HttpServlet {
         out.flush();
     }
 
+    @PostRemove
     protected void deleteFile(HttpServletRequest request, HttpServletResponse response) throws IOException {
         PrintWriter out = response.getWriter();
         response.setContentType("application/json");
