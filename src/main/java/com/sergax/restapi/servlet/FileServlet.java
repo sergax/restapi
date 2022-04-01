@@ -23,56 +23,26 @@ public class FileServlet extends HttpServlet {
             new FileRepositoryImplementation();
     private final Gson gson = new Gson();
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        doGet(request, response);
-    }
-
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        String action = request.getServletPath();
-
-        switch (action) {
-            case "/insert" -> insert(request, response);
-//                case "/delete" -> delete(request, response);
-//                case "/edit" -> showEdit(request, response);
-//                case "/update" -> update(request, response);
-            default -> list(request, response);
-        }
-    }
-
-    public void list(HttpServletRequest request,
-                     HttpServletResponse response) throws IOException {
-        PrintWriter out = response.getWriter();
-        response.setContentType("application/json");
-        response.setCharacterEncoding("UTF-8");
-
-        out.print("File All : ");
-        List<File> fileList = fileRepositoryImplementation.getAll();
-
-        out.print(gson.toJson(fileList));
-        out.flush();
-    }
-
-    @PostUpdate
-    public void insert(HttpServletRequest request,
-                       HttpServletResponse response) throws IOException {
-        PrintWriter out = response.getWriter();
-        response.setContentType("application/json");
-        response.setCharacterEncoding("UTF-8");
-
-        out.print("File New : ");
-        String fileName = request.getParameter("fileName");
-        File newFile = new File(fileName);
-        fileRepositoryImplementation.create(newFile);
-
-        out.print(gson.toJson(newFile));
-        out.flush();
-    }
-
-
-//    @Override
-//    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+//    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+//            throws ServletException, IOException {
+//        doGet(request, response);
+//    }
+//
+//    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+//            throws ServletException, IOException {
+//        String action = request.getServletPath();
+//
+//        switch (action) {
+//            case "/insert" -> insert(request, response);
+////                case "/delete" -> delete(request, response);
+////                case "/edit" -> showEdit(request, response);
+////                case "/update" -> update(request, response);
+//            default -> list(request, response);
+//        }
+//    }
+//
+//    public void list(HttpServletRequest request,
+//                     HttpServletResponse response) throws IOException {
 //        PrintWriter out = response.getWriter();
 //        response.setContentType("application/json");
 //        response.setCharacterEncoding("UTF-8");
@@ -84,8 +54,9 @@ public class FileServlet extends HttpServlet {
 //        out.flush();
 //    }
 //
-//    @Override
-//    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+//    @PostUpdate
+//    public void insert(HttpServletRequest request,
+//                       HttpServletResponse response) throws IOException {
 //        PrintWriter out = response.getWriter();
 //        response.setContentType("application/json");
 //        response.setCharacterEncoding("UTF-8");
@@ -98,37 +69,68 @@ public class FileServlet extends HttpServlet {
 //        out.print(gson.toJson(newFile));
 //        out.flush();
 //    }
-//
-//    @Override
-//    protected void doPut(HttpServletRequest request, HttpServletResponse response) throws IOException {
-//        PrintWriter out = response.getWriter();
-//        response.setContentType("application/json");
-//        response.setCharacterEncoding("UTF-8");
-//
-//        out.print("File Updated : ");
-//        Long id = Long.valueOf(request.getParameter("id"));
-//        String fileName = request.getParameter("fileName");
-//        File updatedFile = new File(id, fileName);
-//        fileRepositoryImplementation.update(updatedFile);
-//
-//        out.print(gson.toJson(updatedFile));
-//        out.flush();
-//    }
-//
-//    @Override
-//    protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws IOException {
-//        PrintWriter out = response.getWriter();
-//        response.setContentType("application/json");
-//        response.setCharacterEncoding("UTF-8");
-//
-//        try {
-//            Long id = Long.valueOf(request.getParameter("id"));
-//            fileRepositoryImplementation.delete(id);
-//            out.print("File by ID : " + id + " was deleted");
-//        } catch (HibernateException e) {
-//            e.printStackTrace();
-//            out.print("Can't delete this File");
-//        }
-//    }
+
+
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        PrintWriter out = response.getWriter();
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+
+        out.print("File All : ");
+        List<File> fileList = fileRepositoryImplementation.getAll();
+
+        out.print(gson.toJson(fileList));
+        out.flush();
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        PrintWriter out = response.getWriter();
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+
+        out.print("File New : ");
+        String fileName = request.getParameter("fileName");
+        File newFile = new File(fileName);
+        fileRepositoryImplementation.create(newFile);
+        response.setContentType("text/HTML; charset=UTF-8");
+
+        out.print(gson.toJson(newFile));
+        out.flush();
+    }
+
+    @Override
+    protected void doPut(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        PrintWriter out = response.getWriter();
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+
+        out.print("File Updated : ");
+        Long id = Long.valueOf(request.getParameter("id"));
+        String fileName = request.getParameter("fileName");
+        File updatedFile = new File(id, fileName);
+        fileRepositoryImplementation.update(updatedFile);
+        response.setContentType("text/HTML; charset=UTF-8");
+
+        out.print(gson.toJson(updatedFile));
+        out.flush();
+    }
+
+    @Override
+    protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        PrintWriter out = response.getWriter();
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+
+        try {
+            Long id = Long.valueOf(request.getParameter("id"));
+            fileRepositoryImplementation.delete(id);
+            out.print("File by ID : " + id + " was deleted");
+        } catch (HibernateException e) {
+            e.printStackTrace();
+            out.print("Can't delete this File");
+        }
+    }
 }
 
