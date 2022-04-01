@@ -20,6 +20,7 @@ public class FileServlet extends HttpServlet {
             new FileRepositoryImplementation();
     private final Gson gson = new Gson();
 
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         PrintWriter out = response.getWriter();
         response.setContentType("application/json");
@@ -32,6 +33,7 @@ public class FileServlet extends HttpServlet {
         out.flush();
     }
 
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         PrintWriter out = response.getWriter();
         response.setContentType("application/json");
@@ -46,6 +48,7 @@ public class FileServlet extends HttpServlet {
         out.flush();
     }
 
+    @Override
     protected void doPut(HttpServletRequest request, HttpServletResponse response) throws IOException {
         PrintWriter out = response.getWriter();
         response.setContentType("application/json");
@@ -61,6 +64,7 @@ public class FileServlet extends HttpServlet {
         out.flush();
     }
 
+    @Override
     protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws IOException {
         PrintWriter out = response.getWriter();
         response.setContentType("application/json");
