@@ -4,6 +4,7 @@ package com.sergax.restapi.servlet;
 import com.google.gson.Gson;
 import com.sergax.restapi.model.File;
 import com.sergax.restapi.repository.hibernateRepositoryImplementation.FileRepositoryImplementation;
+import lombok.SneakyThrows;
 import org.hibernate.HibernateException;
 
 import javax.servlet.annotation.WebServlet;
@@ -12,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.URI;
 import java.util.List;
 
 @WebServlet(name = "FileServlet", urlPatterns = "/file")
@@ -31,12 +33,9 @@ public class FileServlet extends HttpServlet {
 
         out.print(gson.toJson(fileList));
         out.flush();
-
-        doPost(request, response);
-        doPut(request, response);
-        doDelete(request, response);
     }
 
+    @SneakyThrows
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         PrintWriter out = response.getWriter();
@@ -47,7 +46,8 @@ public class FileServlet extends HttpServlet {
         File newFile = new File(fileName);
         fileRepositoryImplementation.create(newFile);
 
-        out.print(gson.toJson("New File : " + newFile));
+        out.print("File New : ");
+        out.print(gson.toJson(newFile));
         out.flush();
     }
 
