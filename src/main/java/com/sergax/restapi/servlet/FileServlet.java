@@ -6,6 +6,7 @@ import com.sergax.restapi.model.File;
 import com.sergax.restapi.repository.hibernateRepositoryImplementation.FileRepositoryImplementation;
 import org.hibernate.HibernateException;
 
+import javax.persistence.PostUpdate;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -22,12 +23,12 @@ public class FileServlet extends HttpServlet {
             new FileRepositoryImplementation();
     private final Gson gson = new Gson();
 
-//    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-//            throws ServletException, IOException {
-//        doGet(request, response);
-//    }
-
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        doGet(request, response);
+    }
+
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String action = request.getServletPath();
 
@@ -54,6 +55,7 @@ public class FileServlet extends HttpServlet {
 
     }
 
+    @PostUpdate
     public void insert(HttpServletRequest request,
                        HttpServletResponse response) throws IOException {
         PrintWriter out = response.getWriter();
