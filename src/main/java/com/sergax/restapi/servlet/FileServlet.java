@@ -52,7 +52,6 @@ public class FileServlet extends HttpServlet {
 
         out.print(gson.toJson(fileList));
         out.flush();
-
     }
 
     @PostUpdate
