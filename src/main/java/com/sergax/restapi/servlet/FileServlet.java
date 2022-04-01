@@ -17,7 +17,7 @@ import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.List;
 
-@WebServlet(name = "FileServlet", urlPatterns = "/file/*")
+@WebServlet(name = "FileServlet", urlPatterns = "/file")
 public class FileServlet extends HttpServlet {
     private final FileRepositoryImplementation fileRepositoryImplementation =
             new FileRepositoryImplementation();
@@ -33,7 +33,7 @@ public class FileServlet extends HttpServlet {
         String action = request.getServletPath();
 
         switch (action) {
-            case "insert" -> insert(request, response);
+            case "/insert" -> insert(request, response);
 //                case "/delete" -> delete(request, response);
 //                case "/edit" -> showEdit(request, response);
 //                case "/update" -> update(request, response);
@@ -68,7 +68,6 @@ public class FileServlet extends HttpServlet {
 
         out.print(gson.toJson(newFile));
         out.flush();
-        response.sendRedirect("");
     }
 
 
