@@ -43,13 +43,11 @@ public class FileServlet extends HttpServlet {
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
 
-        out.println("File New : ");
         String fileName = request.getParameter("fileName");
         File newFile = new File(fileName);
         fileRepositoryImplementation.create(newFile);
-//        response.setContentType("text/HTML; charset=UTF-8");
 
-        out.print(gson.toJson(newFile));
+        out.println(gson.toJson("New File : " + newFile));
         out.flush();
     }
 
@@ -63,7 +61,6 @@ public class FileServlet extends HttpServlet {
         String fileName = request.getParameter("fileName");
         File updatedFile = new File(id, fileName);
         fileRepositoryImplementation.update(updatedFile);
-//        response.setContentType("text/HTML; charset=UTF-8");
 
         out.print(gson.toJson(updatedFile));
         out.flush();
