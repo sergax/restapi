@@ -47,7 +47,7 @@ public class FileServlet extends HttpServlet {
         File newFile = new File(fileName);
         fileRepositoryImplementation.create(newFile);
 
-        out.println(gson.toJson("New File : " + newFile));
+        out.print(gson.toJson("New File : " + newFile));
         out.flush();
     }
 
