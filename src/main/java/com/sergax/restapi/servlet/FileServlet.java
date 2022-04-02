@@ -35,7 +35,6 @@ public class FileServlet extends HttpServlet {
         out.flush();
     }
 
-    @SneakyThrows
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         PrintWriter out = response.getWriter();
@@ -46,7 +45,7 @@ public class FileServlet extends HttpServlet {
         File newFile = new File(fileName);
         fileRepositoryImplementation.create(newFile);
 
-        out.print("File New : ");
+        out.println("File New : ");
         out.print(gson.toJson(newFile));
         out.flush();
     }

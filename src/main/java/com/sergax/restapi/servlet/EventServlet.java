@@ -40,7 +40,7 @@ public class EventServlet extends HttpServlet {
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
 
-        out.print("New Event : ");
+        out.println("New Event : ");
         String eventName = request.getParameter("eventName");
         Long fileId = Long.valueOf(request.getParameter("fileId"));
         File file = fileRepositoryImplementation.getById(fileId);
