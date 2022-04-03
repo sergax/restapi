@@ -45,7 +45,7 @@ public class FileServlet extends HttpServlet {
         response.setContentType("text/HTML; charset=UTF-8");
 
 
-        String fileName = request.getParameter("fileName");
+        String fileName = request.getParameter("file_name");
         File newFile = new File(fileName);
         fileRepositoryImplementation.create(newFile);
 
