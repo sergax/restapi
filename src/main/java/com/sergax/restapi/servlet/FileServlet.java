@@ -25,13 +25,11 @@ public class FileServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         PrintWriter out = response.getWriter();
-//        response.setContentType("application/json");
-//        response.setCharacterEncoding("UTF-8");
-
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
 
         out.print("File All : ");
         List<File> fileList = fileRepositoryImplementation.getAll();
-        response.setContentType("text/HTML; charset=UTF-8");
 
         out.print(gson.toJson(fileList));
         out.flush();
@@ -40,17 +38,15 @@ public class FileServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         PrintWriter out = response.getWriter();
-//        response.setContentType("application/json");
-//        response.setCharacterEncoding("UTF-8");
-        response.setContentType("text/HTML; charset=UTF-8");
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
 
-
-        String fileName = request.getParameter("file_name");
+        String fileName = request.getParameter("fileName");
         File newFile = new File(fileName);
         fileRepositoryImplementation.create(newFile);
 
         out.println("File New : ");
-        out.write(gson.toJson(newFile));
+        out.print(gson.toJson(newFile));
         out.flush();
     }
 
